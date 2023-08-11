@@ -188,7 +188,7 @@ print(r.history)
 
 # print last status code in our request
 print(r.status_code)                   
-                        
+
 # print request url
 print(r.url)                                                   
 ```
@@ -216,7 +216,7 @@ url = "http://httpbin.org/status/200"
 
 # send get request with timeout 1s
 r = requests.get(url, timeout=1)
- 
+
 # if there are error raise it 
 print(r.raise_for_status())  
 ```
