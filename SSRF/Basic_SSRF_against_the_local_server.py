@@ -1,7 +1,7 @@
 import requests
 import urllib3
 from sys import argv
-				    # disable request warnings
+					# disable request warnings
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 					# set this proxy for burp
